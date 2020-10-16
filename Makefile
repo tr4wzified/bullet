@@ -142,6 +142,33 @@ bullet/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/bullet.dir/build.make CMakeFiles/bullet.dir/build
 .PHONY : bullet/fast
 
+classes/Player.o: classes/Player.cpp.o
+
+.PHONY : classes/Player.o
+
+# target to build an object file
+classes/Player.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bullet.dir/build.make CMakeFiles/bullet.dir/classes/Player.cpp.o
+.PHONY : classes/Player.cpp.o
+
+classes/Player.i: classes/Player.cpp.i
+
+.PHONY : classes/Player.i
+
+# target to preprocess a source file
+classes/Player.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bullet.dir/build.make CMakeFiles/bullet.dir/classes/Player.cpp.i
+.PHONY : classes/Player.cpp.i
+
+classes/Player.s: classes/Player.cpp.s
+
+.PHONY : classes/Player.s
+
+# target to generate assembly for a file
+classes/Player.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bullet.dir/build.make CMakeFiles/bullet.dir/classes/Player.cpp.s
+.PHONY : classes/Player.cpp.s
+
 classes/helpers/ColorHelper.o: classes/helpers/ColorHelper.cpp.o
 
 .PHONY : classes/helpers/ColorHelper.o
@@ -168,6 +195,33 @@ classes/helpers/ColorHelper.s: classes/helpers/ColorHelper.cpp.s
 classes/helpers/ColorHelper.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/bullet.dir/build.make CMakeFiles/bullet.dir/classes/helpers/ColorHelper.cpp.s
 .PHONY : classes/helpers/ColorHelper.cpp.s
+
+classes/helpers/DrawHelper.o: classes/helpers/DrawHelper.cpp.o
+
+.PHONY : classes/helpers/DrawHelper.o
+
+# target to build an object file
+classes/helpers/DrawHelper.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bullet.dir/build.make CMakeFiles/bullet.dir/classes/helpers/DrawHelper.cpp.o
+.PHONY : classes/helpers/DrawHelper.cpp.o
+
+classes/helpers/DrawHelper.i: classes/helpers/DrawHelper.cpp.i
+
+.PHONY : classes/helpers/DrawHelper.i
+
+# target to preprocess a source file
+classes/helpers/DrawHelper.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bullet.dir/build.make CMakeFiles/bullet.dir/classes/helpers/DrawHelper.cpp.i
+.PHONY : classes/helpers/DrawHelper.cpp.i
+
+classes/helpers/DrawHelper.s: classes/helpers/DrawHelper.cpp.s
+
+.PHONY : classes/helpers/DrawHelper.s
+
+# target to generate assembly for a file
+classes/helpers/DrawHelper.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bullet.dir/build.make CMakeFiles/bullet.dir/classes/helpers/DrawHelper.cpp.s
+.PHONY : classes/helpers/DrawHelper.cpp.s
 
 main.o: main.cpp.o
 
@@ -205,9 +259,15 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... bullet"
+	@echo "... classes/Player.o"
+	@echo "... classes/Player.i"
+	@echo "... classes/Player.s"
 	@echo "... classes/helpers/ColorHelper.o"
 	@echo "... classes/helpers/ColorHelper.i"
 	@echo "... classes/helpers/ColorHelper.s"
+	@echo "... classes/helpers/DrawHelper.o"
+	@echo "... classes/helpers/DrawHelper.i"
+	@echo "... classes/helpers/DrawHelper.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

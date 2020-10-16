@@ -8,11 +8,6 @@
 namespace Bullet {
 	class ColorHelper {
 		public:
-			ColorHelper();
-			bool ReadColorsFromFile(std::string path);
-			bool SetColor(int index, SDL_Color& color);
-			std::vector<SDL_Color>& GetCurrentColors();
-		private:
-			std::vector<SDL_Color> currentColors;
+			static std::vector<SDL_Color> ReadColorsFromFile(std::string path);
 	};
 }
