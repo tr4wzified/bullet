@@ -142,6 +142,33 @@ bullet/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/bullet.dir/build.make CMakeFiles/bullet.dir/build
 .PHONY : bullet/fast
 
+classes/helpers/ColorHelper.o: classes/helpers/ColorHelper.cpp.o
+
+.PHONY : classes/helpers/ColorHelper.o
+
+# target to build an object file
+classes/helpers/ColorHelper.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bullet.dir/build.make CMakeFiles/bullet.dir/classes/helpers/ColorHelper.cpp.o
+.PHONY : classes/helpers/ColorHelper.cpp.o
+
+classes/helpers/ColorHelper.i: classes/helpers/ColorHelper.cpp.i
+
+.PHONY : classes/helpers/ColorHelper.i
+
+# target to preprocess a source file
+classes/helpers/ColorHelper.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bullet.dir/build.make CMakeFiles/bullet.dir/classes/helpers/ColorHelper.cpp.i
+.PHONY : classes/helpers/ColorHelper.cpp.i
+
+classes/helpers/ColorHelper.s: classes/helpers/ColorHelper.cpp.s
+
+.PHONY : classes/helpers/ColorHelper.s
+
+# target to generate assembly for a file
+classes/helpers/ColorHelper.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bullet.dir/build.make CMakeFiles/bullet.dir/classes/helpers/ColorHelper.cpp.s
+.PHONY : classes/helpers/ColorHelper.cpp.s
+
 main.o: main.cpp.o
 
 .PHONY : main.o
@@ -178,6 +205,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... bullet"
+	@echo "... classes/helpers/ColorHelper.o"
+	@echo "... classes/helpers/ColorHelper.i"
+	@echo "... classes/helpers/ColorHelper.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
