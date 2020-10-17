@@ -3,6 +3,7 @@ int main(int argc, char* argv[]) {
 	Init();
 	while (gameRunning) {
 		SDL_PollEvent(&event);
+		player.Update(event, sdlWindow);
 		Draw();
 		switch(event.type) {
 			case SDL_QUIT:
@@ -17,9 +18,7 @@ int Init() {
 	// create SDL window
 	sdlWindow = SDL_CreateWindow(gameTitle, 0, 0, 640, 480, SDL_WINDOW_FULLSCREEN_DESKTOP);
 	// create SDL renderer
-	sdlRenderer = SDL_CreateRenderer(sdlWindow, -1, SDL_RENDERER_ACCELERATED);
-	SDL_SetRenderDrawColor(sdlRenderer, colorCollection.at(0).r, colorCollection.at(0).g, colorCollection.at(0).b, SDL_ALPHA_OPAQUE);
-	SDL_RenderClear(sdlRenderer);
+	sdlRenderer = SDL_CreateRenderer(sdlWindow, -1, SDL_RENDERER_SOFTWARE);
 	return 0;
 }
 
@@ -32,8 +31,12 @@ int Quit() {
 }
 
 int Draw() {
+	// Draw background
+	SDL_SetRenderDrawColor(sdlRenderer, colorCollection.at(0).r, colorCollection.at(0).g, colorCollection.at(0).b, SDL_ALPHA_OPAQUE);
+	SDL_RenderClear(sdlRenderer);
 	// Draw player
 	SDL_SetRenderDrawColor(sdlRenderer, colorCollection.at(15).r, colorCollection.at(15).g, colorCollection.at(15).b, SDL_ALPHA_OPAQUE);
 	Bullet::DrawHelper::DrawCircle(sdlRenderer, player.GetPosX(), player.GetPosY(), player.GetRadius());
 	SDL_RenderPresent(sdlRenderer);
+	return 0;
 }

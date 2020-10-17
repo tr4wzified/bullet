@@ -21,7 +21,7 @@ bool gameRunning = true;
 SDL_Window* sdlWindow = nullptr;
 SDL_Renderer* sdlRenderer = nullptr;
 SDL_Event event;
-Player player = Player(0, 0, 5);
+Player player = Player(300, 300, 5);
 
 // Functions
 int main(int argc, char* argv[]);

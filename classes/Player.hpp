@@ -8,7 +8,7 @@ namespace Bullet {
 			int radius = 5;
 		public:
 			Player(int posX, int posY, int radius);
-			bool Update();
+			bool Update(SDL_Event& event, SDL_Window* window);
 			int GetPosX();
 			int GetPosY();
 			int GetRadius();
