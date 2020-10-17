@@ -142,6 +142,33 @@ bullet/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/bullet.dir/build.make CMakeFiles/bullet.dir/build
 .PHONY : bullet/fast
 
+classes/LTimer.o: classes/LTimer.cpp.o
+
+.PHONY : classes/LTimer.o
+
+# target to build an object file
+classes/LTimer.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bullet.dir/build.make CMakeFiles/bullet.dir/classes/LTimer.cpp.o
+.PHONY : classes/LTimer.cpp.o
+
+classes/LTimer.i: classes/LTimer.cpp.i
+
+.PHONY : classes/LTimer.i
+
+# target to preprocess a source file
+classes/LTimer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bullet.dir/build.make CMakeFiles/bullet.dir/classes/LTimer.cpp.i
+.PHONY : classes/LTimer.cpp.i
+
+classes/LTimer.s: classes/LTimer.cpp.s
+
+.PHONY : classes/LTimer.s
+
+# target to generate assembly for a file
+classes/LTimer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bullet.dir/build.make CMakeFiles/bullet.dir/classes/LTimer.cpp.s
+.PHONY : classes/LTimer.cpp.s
+
 classes/Player.o: classes/Player.cpp.o
 
 .PHONY : classes/Player.o
@@ -259,6 +286,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... bullet"
+	@echo "... classes/LTimer.o"
+	@echo "... classes/LTimer.i"
+	@echo "... classes/LTimer.s"
 	@echo "... classes/Player.o"
 	@echo "... classes/Player.i"
 	@echo "... classes/Player.s"

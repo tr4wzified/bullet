@@ -2,13 +2,19 @@
 int main(int argc, char* argv[]) {
 	Init();
 	while (gameRunning) {
-		SDL_PollEvent(&event);
-		player.Update(event, sdlWindow);
-		Draw();
-		switch(event.type) {
-			case SDL_QUIT:
-				Quit();
+		while (SDL_PollEvent(&GameGlobals::sdlEvent) != 0)
+		{
+			switch(GameGlobals::sdlEvent.type) {
+				case SDL_QUIT:
+					Quit();
+					break;
+			}
+			player.HandleEvent();
 		}
+		float timeStep = stepTimer.getTicks() / 1000.f;
+		player.Update(timeStep);
+		stepTimer.start();
+		Draw();
 	}
 	return 0;
 }
@@ -16,27 +22,27 @@ int Init() {
 	// initialize SDL
 	SDL_Init(SDL_INIT_VIDEO) == 0 ? SDL_Log("SDL Initialized.") : SDL_Log("SDL failed to initialize! Error: %s", SDL_GetError());
 	// create SDL window
-	sdlWindow = SDL_CreateWindow(gameTitle, 0, 0, 640, 480, SDL_WINDOW_FULLSCREEN_DESKTOP);
+	GameGlobals::sdlWindow = SDL_CreateWindow(gameTitle, 0, 0, 640, 480, SDL_WINDOW_FULLSCREEN_DESKTOP);
 	// create SDL renderer
-	sdlRenderer = SDL_CreateRenderer(sdlWindow, -1, SDL_RENDERER_SOFTWARE);
+	GameGlobals::sdlRenderer = SDL_CreateRenderer(GameGlobals::sdlWindow, -1, SDL_RENDERER_ACCELERATED);
 	return 0;
 }
 
 int Quit() {
 	gameRunning = false;
-	SDL_DestroyRenderer(sdlRenderer);
-	SDL_DestroyWindow(sdlWindow);
+	SDL_DestroyRenderer(GameGlobals::sdlRenderer);
+	SDL_DestroyWindow(GameGlobals::sdlWindow);
 	SDL_Quit();
 	return 0;
 }
 
 int Draw() {
 	// Draw background
-	SDL_SetRenderDrawColor(sdlRenderer, colorCollection.at(0).r, colorCollection.at(0).g, colorCollection.at(0).b, SDL_ALPHA_OPAQUE);
-	SDL_RenderClear(sdlRenderer);
+	SDL_SetRenderDrawColor(GameGlobals::sdlRenderer, colorCollection.at(0).r, colorCollection.at(0).g, colorCollection.at(0).b, SDL_ALPHA_OPAQUE);
+	SDL_RenderClear(GameGlobals::sdlRenderer);
 	// Draw player
-	SDL_SetRenderDrawColor(sdlRenderer, colorCollection.at(15).r, colorCollection.at(15).g, colorCollection.at(15).b, SDL_ALPHA_OPAQUE);
-	Bullet::DrawHelper::DrawCircle(sdlRenderer, player.GetPosX(), player.GetPosY(), player.GetRadius());
-	SDL_RenderPresent(sdlRenderer);
+	SDL_SetRenderDrawColor(GameGlobals::sdlRenderer, colorCollection.at(15).r, colorCollection.at(15).g, colorCollection.at(15).b, SDL_ALPHA_OPAQUE);
+	Bullet::DrawHelper::DrawCircle(GameGlobals::sdlRenderer, player.GetPosX(), player.GetPosY(), player.GetRadius());
+	SDL_RenderPresent(GameGlobals::sdlRenderer);
 	return 0;
 }

@@ -1,36 +1,81 @@
 #include "Player.hpp"
-Bullet::Player::Player(int posX, int posY, int radius) {
+Bullet::Player::Player(float posX, float posY, int radius) {
 	this->posX = posX;
 	this->posY = posY;
 	this->radius = radius;
 }
-bool Bullet::Player::Update(SDL_Event& event, SDL_Window* window) {
-	int width = 0;
-	int height = 0;
-	SDL_GetWindowSize(window, &width, &height);
-	switch(event.key.keysym.sym) {
-		case SDLK_w: 
-			if (posY > 0) posY--;
-			break;
-		case SDLK_s:
-			if (posY < height) posY++;
-			break;
-		case SDLK_a:
-			if (posX > 0) posX--;
-			break;
-		case SDLK_d:
-			if (posX < width) posX++;
-			break;
+void Bullet::Player::HandleEvent() {
+	if (GameGlobals::sdlEvent.type == SDL_KEYDOWN) {
+		switch(GameGlobals::sdlEvent.key.keysym.sym) {
+			case SDLK_w: 
+				velocityY = -VEL;
+				wBeingHeld = true;
+				break;
+			case SDLK_s:
+				velocityY = VEL;
+				sBeingHeld = true;
+				break;
+			case SDLK_a:
+				velocityX = -VEL;
+				aBeingHeld = true;
+				break;
+			case SDLK_d:
+				velocityX = VEL;
+				dBeingHeld = true;
+				break;
+		}
 	}
-	return true;
+	else if (GameGlobals::sdlEvent.type == SDL_KEYUP) {
+		switch (GameGlobals::sdlEvent.key.keysym.sym) {
+			case SDLK_w: 
+				wBeingHeld = false;
+				if (!sBeingHeld) velocityY = 0; break;
+			case SDLK_s:
+				sBeingHeld = false;
+				if (!wBeingHeld) velocityY = 0; break;
+			case SDLK_a:
+				aBeingHeld = false;
+				if (!dBeingHeld) velocityX = 0; break;
+			case SDLK_d:
+				dBeingHeld = false;
+				if (!aBeingHeld) velocityX = 0; break;
+		}
+	}
 }
 
-int Bullet::Player::GetPosX() {
+void Bullet::Player::Update(float timeStep) {
+	int width;
+	int height;
+	SDL_GetWindowSize(GameGlobals::sdlWindow, &width, &height);
+	posX += velocityX * timeStep;
+	if (posX < 0) posX = 0;
+	else if (posX > width) posX = width;
+
+	posY += velocityY * timeStep;
+	if (posY < 0) posY = 0;
+	else if (posY > height) posY = height;
+}
+
+bool Bullet::Player::Dash() {
+
+}
+
+float Bullet::Player::GetPosX() {
 	return posX;
 }
-int Bullet::Player::GetPosY() {
+
+float Bullet::Player::GetPosY() {
 	return posY;
 }
+
+float Bullet::Player::GetVelocityX() {
+	return velocityX;
+}
+
+float Bullet::Player::GetVelocityY() {
+	return velocityY;
+}
+
 int Bullet::Player::GetRadius() {
 	return radius;
 }
