@@ -16,7 +16,6 @@ std::vector<SDL_Color> Bullet::ColorHelper::ReadColorsFromFile(const std::string
 						std::string hex(1, line[j]);
 						j++;
 						hex.push_back(line[j]);
-						SDL_Log("Parsing %s at pos %d", hex.c_str(), j);
 						switch(j) {
 							case 1:
 								tempColor.r = std::stoi(hex, 0, 16);

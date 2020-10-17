@@ -35,4 +35,4 @@ add_custom_command(TARGET bullet PRE_BUILD
 	COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_SOURCE_DIR}/cfg/colors.ini
 	${CMAKE_RUNTIME_OUTPUT_DIRECTORY}
 )
-target_link_libraries(bullet ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES} ${SDL2_TTF_LIBRARIES} ${SDL_GFX_LIBRARIES})
+target_link_libraries(${PROJECT_NAME} SDL2::Main SDL2::GFX)
