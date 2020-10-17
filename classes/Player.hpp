@@ -6,13 +6,13 @@ namespace Bullet {
 	class Player {
 		private:
 			float posX, posY, velocityX, velocityY = 0;
-			int radius = 12;
+			int radius;
 			// Default movement speed, pixels/sec
-			const float VEL = 500.0;
+			float VEL;
 			// Dash movement speed multiplier
-			const float dashMultiplier = 225.0;
+			float dashMultiplier;
 			// Dash cooldown in sec
-			const clock_t dashCooldown = 1.5 * CLOCKS_PER_SEC;
+			const clock_t dashCooldown = 1.0 * CLOCKS_PER_SEC;
 			// If < 0, dash is available
 			clock_t start = clock();
 			clock_t elapsed;
@@ -23,7 +23,7 @@ namespace Bullet {
 			bool dashing = false;
 			bool Dash();
 		public:
-			Player(float posX, float posY, int radius);
+			Player();
 			bool Update();
 			float GetPosX();
 			float GetPosY();
@@ -34,5 +34,6 @@ namespace Bullet {
 			void HandleEvent();
 			void Update(float timeStep);
 			bool IsDashReady();
+			void Reset();
 	};
 }

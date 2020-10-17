@@ -8,6 +8,15 @@ int main(int argc, char* argv[]) {
 				case SDL_QUIT:
 					Quit();
 					break;
+				case SDL_WINDOWEVENT:
+					if (GameGlobals::sdlEvent.window.event == SDL_WINDOWEVENT_RESIZED) {
+						// Scale speed to resolution
+						SDL_Log("Window %d resized to %dx%d", GameGlobals::sdlEvent.window.windowID, GameGlobals::sdlEvent.window.data1, GameGlobals::sdlEvent.window.data2);
+						GameGlobals::screenWidth = GameGlobals::sdlEvent.window.data1;
+						GameGlobals::screenHeight = GameGlobals::sdlEvent.window.data2;
+						player.Reset();
+					}
+					break;
 			}
 			player.HandleEvent();
 		}
@@ -23,7 +32,7 @@ int Init() {
 	SDL_Init(SDL_INIT_VIDEO) == 0 ? SDL_Log("SDL Initialized.") : SDL_Log("SDL failed to initialize! Error: %s", SDL_GetError());
 	// create SDL window
 	/* GameGlobals::sdlWindow = SDL_CreateWindow(gameTitle, 0, 0, 640, 480, SDL_WINDOW_FULLSCREEN_DESKTOP); */
-	GameGlobals::sdlWindow = SDL_CreateWindow(gameTitle, 0, 0, 1280, 720, SDL_WINDOW_BORDERLESS);
+	GameGlobals::sdlWindow = SDL_CreateWindow(gameTitle, 0, 0, GameGlobals::screenWidth, GameGlobals::screenHeight, SDL_WINDOW_BORDERLESS);
 	// create SDL renderer
 	GameGlobals::sdlRenderer = SDL_CreateRenderer(GameGlobals::sdlWindow, -1, SDL_RENDERER_ACCELERATED);
 	return 0;

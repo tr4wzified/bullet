@@ -21,8 +21,8 @@ inline static const char* gameTitle = "BULLET";
 const std::string colorFile = "colors.ini";
 static std::vector<SDL_Color> colorCollection = Bullet::ColorHelper::ReadColorsFromFile(colorFile);
 bool gameRunning = true;
-Player player = Player(20.0, 20.0, 5);
 LTimer stepTimer;
+Player player = Player();
 
 // Functions
 int main(int argc, char* argv[]);

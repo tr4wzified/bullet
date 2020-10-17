@@ -1,8 +1,6 @@
 #include "Player.hpp"
-Bullet::Player::Player(float posX, float posY, int radius) {
-	this->posX = posX;
-	this->posY = posY;
-	this->radius = radius;
+Bullet::Player::Player() {
+	this->Reset();
 }
 void Bullet::Player::HandleEvent() {
 	if (GameGlobals::sdlEvent.type == SDL_KEYDOWN) {
@@ -24,7 +22,10 @@ void Bullet::Player::HandleEvent() {
 				dBeingHeld = true;
 				break;
 			case SDLK_SPACE:
-				if (IsDashReady()) dashing = true;
+				if (IsDashReady()) {
+					dashing = true;
+					SDL_Log("dashing!");
+				}
 		}
 	}
 	else if (GameGlobals::sdlEvent.type == SDL_KEYUP) {
@@ -51,22 +52,19 @@ void Bullet::Player::HandleEvent() {
 
 void Bullet::Player::Update(float timeStep) {
 	elapsed = clock() - start;
-	int width;
-	int height;
 	if (dashing) {
 		velocityX *= dashMultiplier;
 		velocityY *= dashMultiplier;
 	}
 
-	SDL_GetWindowSize(GameGlobals::sdlWindow, &width, &height);
-
 	posX += velocityX * timeStep;
 	if (posX < 0) posX = 0;
-	else if (posX > width) posX = width;
+	else if (posX > GameGlobals::screenWidth) posX = GameGlobals::screenWidth;
 
 	posY += velocityY * timeStep;
 	if (posY < 0) posY = 0;
-	else if (posY > height) posY = height;
+	else if (posY > GameGlobals::screenHeight) posY = GameGlobals::screenHeight;
+
 	if (dashing) {
 		// Reset Velocity
 		velocityX /= dashMultiplier;
@@ -76,7 +74,6 @@ void Bullet::Player::Update(float timeStep) {
 		// Reset cooldown
 		start = clock();
 	}
-
 }
 
 bool Bullet::Player::Dash() {
@@ -104,4 +101,12 @@ int Bullet::Player::GetRadius() {
 
 bool Bullet::Player::IsDashReady() {
 	return elapsed >= dashCooldown;
+}
+
+void Bullet::Player::Reset() {
+	VEL = (GameGlobals::screenWidth / 100) * 40;
+	posX = (GameGlobals::screenWidth / 100) * 50;
+	posY = (GameGlobals::screenHeight / 100) * 50;
+	radius = (GameGlobals::screenWidth / 100) * 0.4;
+	dashMultiplier = (GameGlobals::screenWidth / 8);
 }
