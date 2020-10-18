@@ -19,3 +19,7 @@ void Bullet::Trail::Render() {
    }
 }
 
+void Bullet::Trail::Reset() {
+   length = GameGlobals::GetTrailLength();
+}
+

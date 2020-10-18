@@ -13,5 +13,6 @@ namespace Bullet {
 			Trail(Player* player, uint8_t length);
 			void Update();
 			void Render();
+			void Reset();
 	};
 }

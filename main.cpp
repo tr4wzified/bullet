@@ -15,6 +15,7 @@ int main(int argc, char* argv[]) {
 						GameGlobals::screenWidth = GameGlobals::sdlEvent.window.data1;
 						GameGlobals::screenHeight = GameGlobals::sdlEvent.window.data2;
 						player.Reset();
+						playerTrail.Reset();
 					}
 					break;
 			}

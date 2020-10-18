@@ -13,5 +13,8 @@ namespace Bullet {
 		static const inline std::string colorFile = "colors.ini";
 		static const inline std::vector<SDL_Color> colorCollection = Bullet::ColorHelper::ReadColorsFromFile(colorFile);
 		static const inline char* gameTitle = "BULLET";
+		static uint8_t GetTrailLength() {
+			return 12500 / (1.25 * screenWidth - screenWidth);
+		}
 	};
 }

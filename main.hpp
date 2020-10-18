@@ -21,7 +21,7 @@ using namespace Bullet;
 bool gameRunning = true;
 LTimer stepTimer;
 Player player = Player();
-Trail playerTrail = Trail(&player, 20);
+Trail playerTrail = Trail(&player, GameGlobals::GetTrailLength());
 
 // Functions
 int main(int argc, char* argv[]);
