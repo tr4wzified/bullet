@@ -2,12 +2,11 @@
 #include "GameGlobals.hpp"
 #include <SDL2/SDL2_gfxPrimitives.h>
 #include <time.h>
+#include "Circle.hpp"
 namespace Bullet {
-	class Player {
+	class Player : public Circle {
 		private:
-			SDL_Color color = GameGlobals::colorCollection.at(15);
-			float posX, posY, velocityX, velocityY = 0;
-			int radius;
+			float velocityX, velocityY = 0;
 			// Default movement speed, pixels/sec
 			float VEL;
 			// Dash movement speed multiplier
@@ -22,17 +21,11 @@ namespace Bullet {
 			bool aBeingHeld = false;
 			bool dBeingHeld = false;
 			bool dashing = false;
-			bool Dash();
 		public:
-			Player();
+			Player(float x, float y, float radius);
 			bool Update();
-			float GetPosX();
-			float GetPosY();
 			float GetVelocityX();
 			float GetVelocityY();
-			int GetRadius();
-			SDL_Color GetColor();
-			void Render();
 			void HandleEvent();
 			void Update(float timeStep);
 			bool IsDashReady();

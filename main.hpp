@@ -20,7 +20,7 @@ using namespace Bullet;
 // Variables
 bool gameRunning = true;
 LTimer stepTimer;
-Player player = Player();
+Player player = Player(GameGlobals::screenWidth / 2, GameGlobals::screenHeight / 2, GameGlobals::screenWidth * 0.004);
 Trail playerTrail = Trail(&player, GameGlobals::GetTrailLength());
 Circle testCircle = Circle(GameGlobals::screenWidth / 2, GameGlobals::screenHeight / 2, 10, GameGlobals::colorCollection.at(13));
 

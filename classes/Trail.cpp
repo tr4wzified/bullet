@@ -6,11 +6,11 @@ Bullet::Trail::Trail(Player* player, uint8_t length) {
 
 void Bullet::Trail::Update() {
    if (circles.size() >= length) circles.pop_front();
-   Circle trailPart(player->GetPosX(), player->GetPosY(), player->GetRadius(), player->GetColor());
+   Circle trailPart(player->GetX(), player->GetY(), player->GetRadius(), player->GetColor());
    circles.push_back(trailPart);
    for (Circle& c : circles) {
-      c.color.a -= 255 / length;
-      c.rad -= (float)player->GetRadius() / length;
+      c.SetAlpha(c.GetColor().a - (255 / length));
+      c.SetRadius(c.GetRadius() - (player->GetRadius() / length));
    }
 }
 void Bullet::Trail::Render() {

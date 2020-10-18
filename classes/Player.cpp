@@ -1,7 +1,14 @@
 #include "Player.hpp"
-Bullet::Player::Player() {
-	this->Reset();
+Bullet::Player::Player(float x, float y, float radius) : Circle(x, y, radius, GameGlobals::colorCollection.at(15)) {
+	this->x = x;
+	this->y = y;
+	this->radius = radius;
+	this->color = GameGlobals::colorCollection.at(15);
+	VEL = (GameGlobals::screenWidth / 100) * 40;
+	dashMultiplier = (GameGlobals::screenWidth / 8);
+	dashing = false;
 }
+
 void Bullet::Player::HandleEvent() {
 	if (GameGlobals::sdlEvent.type == SDL_KEYDOWN) {
 		switch(GameGlobals::sdlEvent.key.keysym.sym) {
@@ -57,13 +64,13 @@ void Bullet::Player::Update(float timeStep) {
 		velocityY *= dashMultiplier;
 	}
 
-	posX += velocityX * timeStep;
-	if (posX < 0) posX = 0;
-	else if (posX > GameGlobals::screenWidth) posX = GameGlobals::screenWidth;
+	this->x += velocityX * timeStep;
+	if (this->x < 0) this->x = 0;
+	else if (this->x > GameGlobals::screenWidth) this->x = GameGlobals::screenWidth;
 
-	posY += velocityY * timeStep;
-	if (posY < 0) posY = 0;
-	else if (posY > GameGlobals::screenHeight) posY = GameGlobals::screenHeight;
+	this->y += velocityY * timeStep;
+	if (this->y < 0) this->y = 0;
+	else if (this->y > GameGlobals::screenHeight) this->y = GameGlobals::screenHeight;
 
 	if (dashing) {
 		// Reset Velocity
@@ -78,17 +85,6 @@ void Bullet::Player::Update(float timeStep) {
 	}
 }
 
-bool Bullet::Player::Dash() {
-}
-
-float Bullet::Player::GetPosX() {
-	return posX;
-}
-
-float Bullet::Player::GetPosY() {
-	return posY;
-}
-
 float Bullet::Player::GetVelocityX() {
 	return velocityX;
 }
@@ -97,25 +93,16 @@ float Bullet::Player::GetVelocityY() {
 	return velocityY;
 }
 
-int Bullet::Player::GetRadius() {
-	return radius;
-}
-
-SDL_Color Bullet::Player::GetColor() {
-	return color;
-}
-
 bool Bullet::Player::IsDashReady() {
 	return elapsed >= dashCooldown;
 }
 
 void Bullet::Player::Reset() {
-	VEL = (GameGlobals::screenWidth / 100) * 40;
-	posX = (GameGlobals::screenWidth / 100) * 50;
-	posY = (GameGlobals::screenHeight / 100) * 50;
-	radius = (GameGlobals::screenWidth / 100) * 0.4;
-	dashMultiplier = (GameGlobals::screenWidth / 8);
-}
-void Bullet::Player::Render() {
-	filledCircleRGBA(GameGlobals::sdlRenderer, posX, posY, radius, color.r, color.g, color.b, color.a);
+	this->x = GameGlobals::screenWidth / 2;
+	this->y = GameGlobals::screenHeight / 2;
+	this->radius = GameGlobals::screenWidth * 0.004;
+	this->color = GameGlobals::colorCollection.at(15);
+	VEL = GameGlobals::screenWidth * 0.40;
+	dashMultiplier = GameGlobals::screenWidth / 8;
+	dashing = false;
 }
