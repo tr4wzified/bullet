@@ -22,6 +22,7 @@ bool gameRunning = true;
 LTimer stepTimer;
 Player player = Player();
 Trail playerTrail = Trail(&player, GameGlobals::GetTrailLength());
+Circle testCircle = Circle(GameGlobals::screenWidth / 2, GameGlobals::screenHeight / 2, 10, GameGlobals::colorCollection.at(13));
 
 // Functions
 int main(int argc, char* argv[]);

@@ -1,6 +1,6 @@
 #pragma once
 #include "GameGlobals.hpp"
-#include "Circle.hpp"
+#include <SDL2/SDL2_gfxPrimitives.h>
 #include <time.h>
 namespace Bullet {
 	class Player {

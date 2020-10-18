@@ -26,6 +26,7 @@ int main(int argc, char* argv[]) {
 		playerTrail.Update();
 		stepTimer.start();
 		Draw();
+		SDL_Log("Distance from player to circle is %f", testCircle.DistanceTo(player));
 	}
 	return 0;
 }
@@ -54,6 +55,7 @@ int Draw() {
 	SDL_RenderClear(GameGlobals::sdlRenderer);
 	player.Render();
 	playerTrail.Render();
+	testCircle.Render();
 	SDL_RenderPresent(GameGlobals::sdlRenderer);
 	return 0;
 }

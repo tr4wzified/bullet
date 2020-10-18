@@ -117,5 +117,5 @@ void Bullet::Player::Reset() {
 	dashMultiplier = (GameGlobals::screenWidth / 8);
 }
 void Bullet::Player::Render() {
-	filledCircleRGBA(GameGlobals::sdlRenderer, posX, posY, radius, color.r, color.g, color.b, 255);
+	filledCircleRGBA(GameGlobals::sdlRenderer, posX, posY, radius, color.r, color.g, color.b, color.a);
 }
