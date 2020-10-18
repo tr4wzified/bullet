@@ -6,6 +6,7 @@
 #include "classes/Player.hpp"
 #include "classes/LTimer.hpp"
 #include "classes/GameGlobals.hpp"
+#include "classes/Trail.hpp"
 
 // System Libraries
 #include <SDL2/SDL.h>
@@ -17,12 +18,10 @@
 using namespace Bullet;
 
 // Variables
-inline static const char* gameTitle = "BULLET";
-const std::string colorFile = "colors.ini";
-static std::vector<SDL_Color> colorCollection = Bullet::ColorHelper::ReadColorsFromFile(colorFile);
 bool gameRunning = true;
 LTimer stepTimer;
 Player player = Player();
+Trail playerTrail = Trail(&player, 20);
 
 // Functions
 int main(int argc, char* argv[]);

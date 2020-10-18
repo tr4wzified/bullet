@@ -24,7 +24,6 @@ void Bullet::Player::HandleEvent() {
 			case SDLK_SPACE:
 				if (IsDashReady()) {
 					dashing = true;
-					SDL_Log("dashing!");
 				}
 		}
 	}
@@ -52,6 +51,7 @@ void Bullet::Player::HandleEvent() {
 
 void Bullet::Player::Update(float timeStep) {
 	elapsed = clock() - start;
+	if (IsDashReady()) color = GameGlobals::colorCollection.at(10);
 	if (dashing) {
 		velocityX *= dashMultiplier;
 		velocityY *= dashMultiplier;
@@ -71,6 +71,8 @@ void Bullet::Player::Update(float timeStep) {
 		velocityY /= dashMultiplier;
 		// Stop dashing state
 		dashing = false;
+		// Reset color
+		color = GameGlobals::colorCollection.at(15);
 		// Reset cooldown
 		start = clock();
 	}
@@ -99,6 +101,10 @@ int Bullet::Player::GetRadius() {
 	return radius;
 }
 
+SDL_Color Bullet::Player::GetColor() {
+	return color;
+}
+
 bool Bullet::Player::IsDashReady() {
 	return elapsed >= dashCooldown;
 }
@@ -109,4 +115,7 @@ void Bullet::Player::Reset() {
 	posY = (GameGlobals::screenHeight / 100) * 50;
 	radius = (GameGlobals::screenWidth / 100) * 0.4;
 	dashMultiplier = (GameGlobals::screenWidth / 8);
+}
+void Bullet::Player::Render() {
+	filledCircleRGBA(GameGlobals::sdlRenderer, posX, posY, radius, color.r, color.g, color.b, 255);
 }

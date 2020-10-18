@@ -1,10 +1,11 @@
 #pragma once
-#include "helpers/DrawHelper.hpp"
 #include "GameGlobals.hpp"
+#include "Circle.hpp"
 #include <time.h>
 namespace Bullet {
 	class Player {
 		private:
+			SDL_Color color = GameGlobals::colorCollection.at(15);
 			float posX, posY, velocityX, velocityY = 0;
 			int radius;
 			// Default movement speed, pixels/sec
@@ -30,6 +31,7 @@ namespace Bullet {
 			float GetVelocityX();
 			float GetVelocityY();
 			int GetRadius();
+			SDL_Color GetColor();
 			void Render();
 			void HandleEvent();
 			void Update(float timeStep);
