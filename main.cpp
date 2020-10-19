@@ -2,6 +2,7 @@
 int main(int argc, char* argv[]) {
 	Init();
 	while (gameRunning) {
+
 		while (SDL_PollEvent(&GameGlobals::sdlEvent) != 0)
 		{
 			switch(GameGlobals::sdlEvent.type) {
@@ -26,7 +27,7 @@ int main(int argc, char* argv[]) {
 		playerTrail.Update();
 		stepTimer.start();
 		Draw();
-		SDL_Log("Distance from player to circle is %f", testCircle.DistanceTo(player));
+		//SDL_Log("Distance from player to circle is %f", testCircle.DistanceTo(player));
 	}
 	return 0;
 }
